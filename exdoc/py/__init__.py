@@ -288,7 +288,7 @@ def annotation_to_string(annot):
 
 def _argspec(func):
     """ For a callable, get the full argument spec, and its return type (if any) """
-    assert isinstance(func, collections.Callable), 'Argument must be a callable'
+    assert isinstance(func, collections.abc.Callable), 'Argument must be a callable'
 
     try: sp = inspect.getfullargspec(func)
     except TypeError:
