@@ -20,11 +20,10 @@ setup(
     scripts=[],
     entry_points={},
 
-    python_requires='>=3.4',
+    python_requires='>=3.14',
     install_requires=[],
     extras_require={},
     include_package_data=True,
-    test_suite='nose.collector',
 
     platforms='any',
     classifiers=[
@@ -34,6 +33,7 @@ setup(
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.14',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
 )

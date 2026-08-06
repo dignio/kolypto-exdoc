@@ -20,6 +20,6 @@ publish: README.md
 
 .PHONY: test test-tox
 test:
-	@nosetests
+	@pytest
 test-tox:
 	@tox
