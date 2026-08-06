@@ -281,8 +281,6 @@ def annotation_to_string(annot):
     # Python types
     if isinstance(annot, type):
         return annot.__name__
-    # Python 3.14 stringifies typing.Union[int, str] as "int | str".
-    # Keep the historical output stable across supported Python versions.
     if get_origin(annot) is Union:
         return 'Union[{}]'.format(', '.join(annotation_to_string(arg) for arg in get_args(annot)))
     # Other types
