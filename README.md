@@ -1,5 +1,5 @@
 [![Build Status](https://api.travis-ci.org/kolypto/py-exdoc.png?branch=master)](https://travis-ci.org/kolypto/py-exdoc)
-[![Pythons](https://img.shields.io/badge/python-3.5%E2%80%933.7-blue.svg)](.travis.yml)
+[![Pythons](https://img.shields.io/badge/python-3.14%2B-blue.svg)](tox.ini)
 
 ExDoc
 =====
@@ -180,4 +180,3 @@ And then use its output:
 ```console
 ./collect.py | j2 --format=json README.md.j2
 ```
-

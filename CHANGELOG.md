@@ -1,3 +1,7 @@
+## 0.1.5
+* Support Python 3.14 and later
+* Replace nose-based test commands with pytest
+
 ## 0.1.4 (2021-04-23)
 * SqlAlchemy: `column_property()` support
 

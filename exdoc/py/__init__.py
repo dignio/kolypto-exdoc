@@ -1,9 +1,10 @@
 """ Helpers for Python objects """
 
 import inspect
-import collections
+from collections import abc as collections_abc
 import re
 from inspect import cleandoc
+from typing import get_args, get_origin, Union
 
 from .. import data
 
@@ -280,6 +281,8 @@ def annotation_to_string(annot):
     # Python types
     if isinstance(annot, type):
         return annot.__name__
+    if get_origin(annot) is Union:
+        return 'Union[{}]'.format(', '.join(annotation_to_string(arg) for arg in get_args(annot)))
     # Other types
     s = str(annot)
     # `typing` module inserts `typing.` prefixes which are ugly. Remove.
@@ -288,7 +291,7 @@ def annotation_to_string(annot):
 
 def _argspec(func):
     """ For a callable, get the full argument spec, and its return type (if any) """
-    assert isinstance(func, collections.abc.Callable), 'Argument must be a callable'
+    assert isinstance(func, collections_abc.Callable), 'Argument must be a callable'
 
     try: sp = inspect.getfullargspec(func)
     except TypeError:
