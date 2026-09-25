@@ -1,5 +1,5 @@
 import unittest
-from typing import Union
+from typing import Optional, Union
 
 import exdoc
 
@@ -515,6 +515,18 @@ class PyTest(unittest.TestCase):
 
         d = exdoc.doc(f2)
         self.assertEqual(d["ret"], {"type": "PyTest", "doc": ""})
+
+    def test_union_annotations(self):
+        """Unions render as `Union[...]` regardless of syntax and Python version"""
+
+        def f(a: Union[int, str], b: int | str, c: Optional[int]):
+            pass
+
+        d = exdoc.doc(f)
+        self.assertEqual(
+            [arg["type"] for arg in d["args"]],
+            ["Union[int, str]", "Union[int, str]", "Union[int, NoneType]"],
+        )
 
     def test_getmembers(self):
         """Test getmembers()"""

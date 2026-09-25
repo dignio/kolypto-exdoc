@@ -4,6 +4,7 @@ import inspect
 from collections import abc as collections_abc
 import re
 from inspect import cleandoc
+from types import UnionType
 from typing import get_args, get_origin, Union
 
 from .. import data
@@ -281,7 +282,11 @@ def annotation_to_string(annot):
     # Python types
     if isinstance(annot, type):
         return annot.__name__
-    if get_origin(annot) is Union:
+    # Unions: render as `Union[...]` on every supported Python.
+    # Python 3.14 merged `types.UnionType` into `typing.Union` and stringifies both
+    # as `int | str`; older versions keep them distinct. Normalise so that the output
+    # does not depend on the interpreter, nor on which syntax the annotation used.
+    if get_origin(annot) in (Union, UnionType):
         return 'Union[{}]'.format(', '.join(annotation_to_string(arg) for arg in get_args(annot)))
     # Other types
     s = str(annot)
