@@ -1,5 +1,5 @@
 ## 0.1.5
-* Support Python 3.14 and later
+* Support Python 3.12, 3.13 and 3.14
 * Replace nose-based test commands with pytest
 
 ## 0.1.4 (2021-04-23)
